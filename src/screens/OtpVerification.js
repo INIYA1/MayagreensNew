@@ -10,7 +10,7 @@ import {
 import Icon from "react-native-vector-icons/Fontisto";
 // import ButtonGrey1 from "../components/ButtonGrey1";
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
   const [number3, setNumber3] = useState("");
@@ -165,7 +165,7 @@ export default function LoginScreen() {
             marginVertical: 10
           }}
         >
-          <TouchableOpacity
+          <TouchableOpacity onPress={()=> navigation.navigate('dashboard')}
             style={{
               height: 45,
               width: 240,

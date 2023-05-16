@@ -3,7 +3,7 @@ const DashboardData=[
         id:1,
         heading:"IRRIGATION",
         image:require('../images/irrigation.png'),
-        naviPage:'irrigation'
+        naviPage:'Irrigation'
     },
     {
         id:2,
