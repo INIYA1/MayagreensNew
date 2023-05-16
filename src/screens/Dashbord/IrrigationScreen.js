@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ArrowIcon from 'react-native-vector-icons/FontAwesome5'
@@ -11,6 +11,25 @@ export default function IrrigationScreen() {
 
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(false);
+  const [categoryIndex, setCategoryIndex] = useState(0)
+
+  const categories = ['VALVE', 'SENSOR', 'GROUP', 'FILTER']
+
+
+  const CategoryList = () => {
+    return <View style={styles.categoryContainer}>
+      {categories.map((item, index) => (
+        <TouchableOpacity key={index} onPress={()=>setCategoryIndex(index)}>
+          <Text 
+            style={[styles.categoryText, categoryIndex == index &&
+              styles.categoryTextSelected]}>
+            {item}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  }
+
+
 
   const handleToggle1 = () => {
     setIsExpanded1(!isExpanded1);
@@ -49,77 +68,78 @@ export default function IrrigationScreen() {
   };
 
   return (
-    
-      <LinearGradient
-        colors={['#7a857e', '#ffff']}
-        style={styles.LinearGradient}>
 
-        <View style={styles.card1}>
+    <LinearGradient
+      colors={['#7a857e', '#ffff']}
+      style={styles.LinearGradient}>
 
-          <View style={{ flexDirection: 'row', top: 20 }}>
-            <Text style={{ color: "black", left: 15, fontWeight: "700", fontSize: 20 }}>Test Farm</Text>
-            <Image source={require('../../images/location-icon.png')} style={{ left: 270 }} />
-          </View>
+      <View style={styles.card1}>
 
-          <View style={{ flexDirection: 'row', top: 30, left: 180 }}>
-            <Image source={require('../../images/connected-icon.png')} style={{ height: 40, width: 40 }} />
-            <Text style={{ left: 30, top: 10, color: 'black', fontSize: 15 }}>{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
-          </View>
+        <View style={{ flexDirection: 'row', top: 20 }}>
+          <Text style={{ color: "black", left: 15, fontWeight: "700", fontSize: 20 }}>Test Farm</Text>
+          <Image source={require('../../images/location-icon.png')} style={{ left: 270 }} />
         </View>
-        <ScrollView>
 
-          <View style={styles.card2}>
-            <View style={{ flexDirection: 'row', margin: 8 }}>
-              <TouchableOpacity>
-                <Icon name='setting' size={35} />
-              </TouchableOpacity>
-              <Text style={styles.text1}>POWER</Text>
-              <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
-              <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
-            </View>
-            <View style={styles.separateline} />
+        <View style={{ flexDirection: 'row', top: 30, left: 180 }}>
+          <Image source={require('../../images/connected-icon.png')} style={{ height: 40, width: 40 }} />
+          <Text style={{ left: 30, top: 10, color: 'black', fontSize: 15 }}>{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
+        </View>
+      </View>
+      <ScrollView>
 
-            <View style={{ flexDirection: 'row' }}>
-              <TouchableOpacity>
-                <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
-
-              </TouchableOpacity>
-              <View style={{ alignItems: 'center', left: 60 }}>
-
-                <Text style={{ color: 'black', fontSize: 22, fontWeight: '800' }}>STATUS</Text>
-                <Text style={{ color: 'red', top: 2, fontSize: 18, fontWeight: '600' }}>OFF-Normal</Text>
-                <Text style={{ color: 'black', fontSize: 16, top: 7 }} >{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <View>
-              <Text style={{ color: 'black', fontWeight: '800', left: 12, fontSize: 18 }}>Motor-1</Text>
-            </View>
-            <View style={styles.separateline} />
-
-            <View style={{ flexDirection: "row" }}>
-              <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
-              <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
-              <TouchableOpacity>
-                <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
-              </TouchableOpacity>
-              <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
-            </View>
-            <View style={styles.separateline} />
-            <TouchableOpacity onPress={handleToggle1}>
-           <ArrowIcon style={{height:25,width:25,alignSelf:'center'}} name={isExpanded1?'angle-double-up':'angle-double-down'} size={32} color='black' />
+        <View style={styles.card2}>
+          <View style={{ flexDirection: 'row', margin: 8 }}>
+            <TouchableOpacity>
+              <Icon name='setting' size={35} />
             </TouchableOpacity>
+            <Text style={styles.text1}>POWER</Text>
+            <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
+            <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
           </View>
-          <View>
-          {isExpanded1 && (
-            <View style={styles.messageContainer}>
-              <Text style={styles.messageText}>Hi</Text>
+          <View style={styles.separateline} />
+
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity>
+              <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
+
+            </TouchableOpacity>
+            <View style={{ alignItems: 'center', left: 60 }}>
+
+              <Text style={{ color: 'black', fontSize: 22, fontWeight: '800' }}>STATUS</Text>
+              <Text style={{ color: 'red', top: 2, fontSize: 18, fontWeight: '600' }}>OFF-Normal</Text>
+              <Text style={{ color: 'black', fontSize: 16, top: 7 }} >{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
             </View>
+            <View>
+              <TouchableOpacity>
+                <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View>
+            <Text style={{ color: 'black', fontWeight: '800', left: 12, fontSize: 18 }}>Motor-1</Text>
+          </View>
+          <View style={styles.separateline} />
+
+          <View style={{ flexDirection: "row" }}>
+            <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
+            <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
+            <TouchableOpacity>
+              <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
+            </TouchableOpacity>
+            <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
+          </View>
+          <View style={styles.separateline} />
+          <TouchableOpacity onPress={handleToggle1}>
+            <ArrowIcon style={{ height: 25, width: 25, alignSelf: 'center' }} name={isExpanded1 ? 'angle-double-up' : 'angle-double-down'} size={32} color='black' />
+          </TouchableOpacity>
+        </View>
+        <View>
+          {isExpanded1 && (
+            <CategoryList />
+            //   {/* <View style={styles.messageContainer}>
+            //     <Text style={styles.messageText}>Hi</Text>
+            //    </View> */}
           )}
         </View>
 
@@ -127,66 +147,66 @@ export default function IrrigationScreen() {
 
 
 
-         
-          <View style={styles.card2}>
-            <View style={{ flexDirection: 'row', margin: 8 }}>
-              <TouchableOpacity>
-                <Icon name='setting' size={35} />
-              </TouchableOpacity>
-              <Text style={styles.text1}>POWER</Text>
-              <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
-              <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
-            </View>
-            <View style={styles.separateline} />
 
-            <View style={{ flexDirection: 'row' }}>
-              <TouchableOpacity>
-                <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
-
-              </TouchableOpacity>
-              <View style={{ alignItems: 'center', left: 60 }}>
-
-                <Text style={{ color: 'black', fontSize: 22, fontWeight: '800' }}>STATUS</Text>
-                <Text style={{ color: 'red', top: 2, fontSize: 18, fontWeight: '600' }}>OFF-Normal</Text>
-                <Text style={{ color: 'black', fontSize: 16, top: 7 }} >{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <View>
-              <Text style={{ color: 'black', fontWeight: '800', left: 12, fontSize: 18 }}>Motor-1</Text>
-            </View>
-            <View style={styles.separateline} />
-
-            <View style={{ flexDirection: "row" }}>
-              <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
-              <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
-              <TouchableOpacity>
-                <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
-              </TouchableOpacity>
-              <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
-            </View>
-            <View style={styles.separateline} />
-            <TouchableOpacity onPress={handleToggle2}>
-           <ArrowIcon style={{height:25,width:25,alignSelf:'center'}} name={isExpanded2?'angle-double-up':'angle-double-down'} size={32} color='black' />
+        <View style={styles.card2}>
+          <View style={{ flexDirection: 'row', margin: 8 }}>
+            <TouchableOpacity>
+              <Icon name='setting' size={35} />
             </TouchableOpacity>
+            <Text style={styles.text1}>POWER</Text>
+            <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
+            <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
           </View>
-          <View>
-          {isExpanded2 && (
-              <View style={styles.messageContainer}>
-                <Text style={styles.messageText}>Hi</Text>
-              </View>
-            )}
-          </View>
-          <View><Text></Text></View>
-        </ScrollView>
-      </LinearGradient>
+          <View style={styles.separateline} />
 
-  
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity>
+              <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
+
+            </TouchableOpacity>
+            <View style={{ alignItems: 'center', left: 60 }}>
+
+              <Text style={{ color: 'black', fontSize: 22, fontWeight: '800' }}>STATUS</Text>
+              <Text style={{ color: 'red', top: 2, fontSize: 18, fontWeight: '600' }}>OFF-Normal</Text>
+              <Text style={{ color: 'black', fontSize: 16, top: 7 }} >{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
+            </View>
+            <View>
+              <TouchableOpacity>
+                <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View>
+            <Text style={{ color: 'black', fontWeight: '800', left: 12, fontSize: 18 }}>Motor-1</Text>
+          </View>
+          <View style={styles.separateline} />
+
+          <View style={{ flexDirection: "row" }}>
+            <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
+            <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
+            <TouchableOpacity>
+              <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
+            </TouchableOpacity>
+            <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
+          </View>
+          <View style={styles.separateline} />
+          <TouchableOpacity onPress={handleToggle2}>
+            <ArrowIcon style={{ height: 25, width: 25, alignSelf: 'center' }} name={isExpanded2 ? 'angle-double-up' : 'angle-double-down'} size={32} color='black' />
+          </TouchableOpacity>
+        </View>
+        <View>
+          {isExpanded2 && (
+            <View style={styles.messageContainer}>
+              <Text style={styles.messageText}>Hi</Text>
+            </View>
+          )}
+        </View>
+        <View><Text></Text></View>
+      </ScrollView>
+    </LinearGradient>
+
+
   )
 }
 const styles = StyleSheet.create({
@@ -214,7 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
     alignSelf: 'center',
-    elevation:6
+    elevation: 6
     // flex:1
   },
   text1: {
@@ -236,13 +256,28 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     // bottom: 10
   },
-  // card2: {
-  //   backgroundColor: 'white',
-  //   height: 350,
-  //   width: "97%",
-  //   alignSelf: 'center',
-  //   top: 40,
-  //   borderRadius: 6,
-  //   bottomm:20
-  // },
+  categoryContainer: {
+    flexDirection: 'row',
+    marginTop: 30,
+    marginBottom: 20,
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    height: 50,
+    width: "96%",
+    alignSelf: 'center',
+    borderRadius: 6,
+    elevation: 5
+  },
+  categoryText: {
+    margin: 10,
+    fontSize: 19,
+    color: 'black'
+  },
+  categoryTextSelected: {
+    // color: 'green',
+    paddingBottom: 5,
+    borderBottomWidth: 2,
+    borderColor: '#6CFF0F',
+  }
+
 })
