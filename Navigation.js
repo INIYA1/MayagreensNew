@@ -37,7 +37,7 @@ function Navigation() {
 function DrawerNavigator() {
     return (
         <Drawer.Navigator initialRouteName='Dashboard'>
-            <Drawer.Screen name='dashboard' component={Dashboard} />
+            <Drawer.Screen name='Dashboard' component={Dashboard} />
             <Drawer.Screen name='Irrigation' component={IrrigationScreen} style={{ color: 'blue' }} />
             <Drawer.Screen name='weather' component={WeatherScreen} />
             <Drawer.Screen name='fertigation' component={Fertigation} />

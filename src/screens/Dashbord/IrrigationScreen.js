@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/AntDesign';
-import ArrowIcon from 'react-native-vector-icons/FontAwesome5'
+import ArrowIcon from 'react-native-vector-icons/FontAwesome5';
+import IrrigationValveList from '../../components/irrigationvalvelist'
 
 
 
@@ -11,23 +12,122 @@ export default function IrrigationScreen() {
 
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(false);
-  const [categoryIndex, setCategoryIndex] = useState(0)
+  const [isExpanded12, setIsExpanded12] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('')
 
-  const categories = ['VALVE', 'SENSOR', 'GROUP', 'FILTER']
+  // VALVE LIST
 
 
-  const CategoryList = () => {
-    return <View style={styles.categoryContainer}>
-      {categories.map((item, index) => (
-        <TouchableOpacity key={index} onPress={()=>setCategoryIndex(index)}>
-          <Text 
-            style={[styles.categoryText, categoryIndex == index &&
-              styles.categoryTextSelected]}>
-            {item}</Text>
+  const valverenderItem = ({ item }) => (
+
+    <View style={styles.item}>
+
+      <View >
+        <Text style={styles.title}>{item.valvename}</Text>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={styles.title}>{item.direction}</Text>
+          <Image source={item.towerimg} style={{ height: 30, width: 30, bottom: 25, left: 10 }} />
+          <TouchableOpacity>
+            <Image source={require('../../images/toggle-off.png')} style={{ height: 50, width: 50, left: 9, bottom: 40 }} />
+          </TouchableOpacity>
+
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity>
+          <Image source={require('../../images/valve_off.png')} style={{ height: 50, width: 50, left: 7, }} />
         </TouchableOpacity>
-      ))}
+        <View>
+          <Image source={require('../../images/clock-icon.png')} style={{ height: 35, width: 35, left: 25, }} />
+          <Image source={item.thunderimg} style={{ height: 35, width: 35, bottom: 25, left: 80 }} />
+
+          <Text style={{ color: 'red', left: 30, bottom: 20 }}>0.00</Text>
+        </View>
+      </View>
+
     </View>
+  );
+  function valvetab() {
+    return (
+      <FlatList
+        data={IrrigationValveList}
+        renderItem={valverenderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      />
+    )
   }
+  const groupTabContent = () => {
+    switch (selectedTab) {
+      case 'MANUAL':
+        return <Text>manual</Text>;
+      case 'CYCLE':
+        return <Text>cycle</Text>;
+      case 'SENSOR':
+        return <Text>sensor</Text>;
+        default:
+        return null;
+    }
+  };
+  function sensortab() {
+    return (
+      <View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <View style={styles.sensorContainer}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ color: 'black', left: 5, top: 5, fontSize: 15 }}>Water Level</Text>
+            <Image source={require('../../images/tower-red-icon.png')} style={{ height: 30, width: 30, top: 5, left: 80 }} />
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+          <Image source={require('../../images/water_level_50.png')} style={{ height: 60, width: 60, top: 5, }} />
+          <Image source={require('../../images/graph.png')} style={{ height: 35, width: 35, top: 30, }} />
+          <Image source={require('../../images/battery_0.png')} style={{ height: 35, width: 35, top: 30,  }} />
+          </View>
+          <View style={{flexDirection:'row',top:10,justifyContent:'space-around',left:8}}>
+            <Text style={{color:'black', fontWeight:'500'}}>50%</Text>
+            <Text style={{color:'black', fontWeight:'500'}}>View</Text>
+            <Text style={{color:'black', fontWeight:'500'}}>0%</Text>
+          </View>
+        </View>
+        <View style={styles.sensorContainer}>
+        <View style={{ flexDirection: 'row' }}>
+            <Text style={{ color: 'black', left: 5, top: 5, fontSize: 15 }}>Pressure</Text>
+            <Image source={require('../../images/tower-icon.png')} style={{ height: 30, width: 30, top: 5, left: 80 }} />
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+          <Image source={require('../../images/pressure.png')} style={{ height: 50, width: 50, top:20, }} />
+          <Image source={require('../../images/graph.png')} style={{ height: 35, width: 35, top: 30, }} />
+          <Image source={require('../../images/battery_100.png')} style={{ height: 35, width: 35, top: 30,  }} />
+          </View>
+          <View style={{flexDirection:'row',top:10,justifyContent:'space-around',left:8,}}>
+            <Text style={{color:'black', fontWeight:'500',top:12}}>0 Psi</Text>
+            <Text style={{color:'black', fontWeight:'500',top:12}}>View</Text>
+            <Text style={{color:'black', fontWeight:'500',top:12}}>90%</Text>
+          </View>
+        </View>
+      </View>
+      </View>
+    )
+  }
+
+
+  const tabContent = () => {
+    switch (selectedTab) {
+      case 'valve':
+        return valvetab();
+      case 'sensor':
+        return sensortab();
+      case 'group':
+        return groupTabContent();
+      case 'filter':
+        return <Text>filter1</Text>;
+      default:
+        return null;
+    }
+  };
+
+
 
 
 
@@ -37,6 +137,14 @@ export default function IrrigationScreen() {
 
   const handleToggle2 = () => {
     setIsExpanded2(!isExpanded2);
+  };
+
+  const handleTabPress = (tab) => {
+    setSelectedTab(tab);
+  }
+
+  const handleTabPress1=()=>{
+    setIsExpanded12(!isExpanded12);
   };
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -122,7 +230,8 @@ export default function IrrigationScreen() {
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: "row" }}>
-            <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
+            <Image source={require('../../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
+
             <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
             <TouchableOpacity>
               <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
@@ -136,12 +245,47 @@ export default function IrrigationScreen() {
         </View>
         <View>
           {isExpanded1 && (
-            <CategoryList />
-            //   {/* <View style={styles.messageContainer}>
-            //     <Text style={styles.messageText}>Hi</Text>
-            //    </View> */}
+            <View>
+              <View style={styles.tabContainer}>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('valve')}>
+                  <Text style={styles.tabText}>Valve</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('sensor')}>
+                  <Text style={styles.tabText}>Sensor</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('group')}>
+                  <Text style={styles.tabText}>Group</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('filter')}>
+                  <Text style={styles.tabText}>Filter</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                {tabContent()}
+              </View>
+
+
+            </View>
           )}
         </View>
+              {selectedTab &&(
+                  <View>
+                  <View style={styles.tabContainer}>
+                  <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('MANUAL')}>
+                  <Text style={styles.tabText}>MANUAL</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('CYCLE')}>
+                  <Text style={styles.tabText}>CYCLE</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('SENSOR')}>
+                  <Text style={styles.tabText}>SENSOR</Text>
+                </TouchableOpacity>
+                </View>
+                {groupTabContent()}
+                  </View>
+                )
+              }
+        
 
 
 
@@ -183,7 +327,7 @@ export default function IrrigationScreen() {
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: "row" }}>
-            <Image source={require('../../images/water-tap.png')} style={{ height: 70, width: 70, left: 7, bottom: 9 }} />
+            <Image source={require('../../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
             <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
             <TouchableOpacity>
               <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
@@ -226,7 +370,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   card2: {
-    height: 340,
+    height: 310,
     width: '95%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -256,28 +400,58 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     // bottom: 10
   },
-  categoryContainer: {
-    flexDirection: 'row',
-    marginTop: 30,
-    marginBottom: 20,
-    justifyContent: 'space-between',
+  tabContainer: {
+    // height:60,
+    margin: 8,
+    borderRadius: 10,
     backgroundColor: 'white',
-    height: 50,
-    width: "96%",
-    alignSelf: 'center',
-    borderRadius: 6,
-    elevation: 5
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // alignItems: 'center',
+    alignSelf:'center',
+    // width:"96%",
+    // marginVertical: 10,
+    // marginLeft: 10,
+    // marginRight: 10,
+    elevation: 5,
+    // height:60
   },
-  categoryText: {
+  tabText: {
     margin: 10,
-    fontSize: 19,
-    color: 'black'
+    fontSize: 18,
+    color: 'black',
   },
-  categoryTextSelected: {
-    // color: 'green',
-    paddingBottom: 5,
-    borderBottomWidth: 2,
-    borderColor: '#6CFF0F',
+  tabItem: {
+    padding: 16,
+  },
+  // tabContent: {
+  //   padding: 16,
+  // },
+  item: {
+    flex: 1,
+    backgroundColor: 'white',
+    // height: 130,
+    // width: '%',
+    borderRadius: 10,
+    margin: 10,
+    padding: 20,
+    elevation: 8
+  },
+  title: {
+    color: 'black',
+    right: 12,
+    // bottom: 10,
+    fontSize: 15,
+    fontWeight: '500'
+  },
+  sensorContainer: {
+    backgroundColor: "white",
+    height: 130,
+    width: "45%",
+    borderRadius: 10,
+    elevation: 5
   }
+
+
 
 })
