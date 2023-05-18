@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ArrowIcon from 'react-native-vector-icons/FontAwesome5';
-import IrrigationValveList from '../../components/irrigationvalvelist'
+import MotoroneValve from '../../components/IrrigationPageList/MotoroneValve';
+// import IrrigationValveList from '../../components/irrigationvalvelist'
 
 
 
@@ -12,52 +13,40 @@ export default function IrrigationScreen() {
 
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(false);
-  const [isExpanded12, setIsExpanded12] = useState(false);
   const [selectedTab, setSelectedTab] = useState('')
 
-  // VALVE LIST
 
+  const handleToggle1 = () => {
+    setIsExpanded1(!isExpanded1);
+  };
 
-  const valverenderItem = ({ item }) => (
+  const handleToggle2 = () => {
+    setIsExpanded2(!isExpanded2);
+  };
 
-    <View style={styles.item}>
-
-      <View >
-        <Text style={styles.title}>{item.valvename}</Text>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={styles.title}>{item.direction}</Text>
-          <Image source={item.towerimg} style={{ height: 30, width: 30, bottom: 25, left: 10 }} />
-          <TouchableOpacity>
-            <Image source={require('../../images/toggle-off.png')} style={{ height: 50, width: 50, left: 9, bottom: 40 }} />
-          </TouchableOpacity>
-
-        </View>
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity>
-          <Image source={require('../../images/valve_off.png')} style={{ height: 50, width: 50, left: 7, }} />
-        </TouchableOpacity>
-        <View>
-          <Image source={require('../../images/clock-icon.png')} style={{ height: 35, width: 35, left: 25, }} />
-          <Image source={item.thunderimg} style={{ height: 35, width: 35, bottom: 25, left: 80 }} />
-
-          <Text style={{ color: 'red', left: 30, bottom: 20 }}>0.00</Text>
-        </View>
-      </View>
-
-    </View>
-  );
-  function valvetab() {
-    return (
-      <FlatList
-        data={IrrigationValveList}
-        renderItem={valverenderItem}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-      />
-    )
+  const handleTabPress = (tab) => {
+    setSelectedTab(tab);
   }
+
+
+  const tabContent = () => {
+    switch (selectedTab) {
+      case 'valve':
+        return <MotoroneValve />
+      case 'sensor':
+        return sensortab();
+      case 'group':
+        return groupTabContent();
+      case 'filter':
+        return <Text>filter1</Text>;
+      default:
+        return <></>
+    }
+  };
+
+
+
+
   const groupTabContent = () => {
     switch (selectedTab) {
       case 'MANUAL':
@@ -112,40 +101,10 @@ export default function IrrigationScreen() {
   }
 
 
-  const tabContent = () => {
-    switch (selectedTab) {
-      case 'valve':
-        return valvetab();
-      case 'sensor':
-        return sensortab();
-      case 'group':
-        return groupTabContent();
-      case 'filter':
-        return <Text>filter1</Text>;
-      default:
-        return null;
-    }
-  };
 
 
 
 
-
-  const handleToggle1 = () => {
-    setIsExpanded1(!isExpanded1);
-  };
-
-  const handleToggle2 = () => {
-    setIsExpanded2(!isExpanded2);
-  };
-
-  const handleTabPress = (tab) => {
-    setSelectedTab(tab);
-  }
-
-  const handleTabPress1=()=>{
-    setIsExpanded12(!isExpanded12);
-  };
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
@@ -268,7 +227,8 @@ export default function IrrigationScreen() {
             </View>
           )}
         </View>
-              {selectedTab &&(
+        <View>
+              {isExpanded2&&(
                   <View>
                   <View style={styles.tabContainer}>
                   <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('MANUAL')}>
@@ -282,10 +242,12 @@ export default function IrrigationScreen() {
                 </TouchableOpacity>
                 </View>
                 {groupTabContent()}
+                
                   </View>
+                 
                 )
               }
-        
+              </View>
 
 
 
@@ -424,14 +386,9 @@ const styles = StyleSheet.create({
   tabItem: {
     padding: 16,
   },
-  // tabContent: {
-  //   padding: 16,
-  // },
   item: {
     flex: 1,
     backgroundColor: 'white',
-    // height: 130,
-    // width: '%',
     borderRadius: 10,
     margin: 10,
     padding: 20,

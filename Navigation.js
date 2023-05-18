@@ -24,10 +24,12 @@ const Stack = createNativeStackNavigator();
 function Navigation() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='login' screenOptions={{ header: () => null }}>
+            <Stack.Navigator initialRouteName='Irrigation' screenOptions={{ header: () => null }}>
                 <Stack.Screen name='login' component={LoginScreen} />
                 <Stack.Screen name='otp' component={OtpVerification} />
                 <Stack.Screen name='dashboard' component={DrawerNavigator} />
+            <Stack.Screen name='Irrigation' component={IrrigationScreen} style={{ color: 'blue' }} />
+
             </Stack.Navigator>
         </NavigationContainer>
     )
