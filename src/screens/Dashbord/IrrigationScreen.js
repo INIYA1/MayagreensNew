@@ -4,6 +4,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ArrowIcon from 'react-native-vector-icons/FontAwesome5';
 import MotoroneValve from '../../components/IrrigationPageList/MotoroneValve';
+import MotoroneSensor from '../../components/IrrigationPageList/MotoroneSensor';
+import MotoroneGroup from '../../components/IrrigationPageList/MotoroneGroupComponent/MotoroneGroup';
+import { IrrigationPageStyle } from '../../styles/irrigationPageStyle';
 // import IrrigationValveList from '../../components/irrigationvalvelist'
 
 
@@ -34,9 +37,9 @@ export default function IrrigationScreen() {
       case 'valve':
         return <MotoroneValve />
       case 'sensor':
-        return sensortab();
+        return <MotoroneSensor />
       case 'group':
-        return groupTabContent();
+        return <MotoroneGroup />
       case 'filter':
         return <Text>filter1</Text>;
       default:
@@ -44,67 +47,7 @@ export default function IrrigationScreen() {
     }
   };
 
-
-
-
-  const groupTabContent = () => {
-    switch (selectedTab) {
-      case 'MANUAL':
-        return <Text>manual</Text>;
-      case 'CYCLE':
-        return <Text>cycle</Text>;
-      case 'SENSOR':
-        return <Text>sensor</Text>;
-        default:
-        return null;
-    }
-  };
-  function sensortab() {
-    return (
-      <View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <View style={styles.sensorContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: 'black', left: 5, top: 5, fontSize: 15 }}>Water Level</Text>
-            <Image source={require('../../images/tower-red-icon.png')} style={{ height: 30, width: 30, top: 5, left: 80 }} />
-          </View>
-          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-          <Image source={require('../../images/water_level_50.png')} style={{ height: 60, width: 60, top: 5, }} />
-          <Image source={require('../../images/graph.png')} style={{ height: 35, width: 35, top: 30, }} />
-          <Image source={require('../../images/battery_0.png')} style={{ height: 35, width: 35, top: 30,  }} />
-          </View>
-          <View style={{flexDirection:'row',top:10,justifyContent:'space-around',left:8}}>
-            <Text style={{color:'black', fontWeight:'500'}}>50%</Text>
-            <Text style={{color:'black', fontWeight:'500'}}>View</Text>
-            <Text style={{color:'black', fontWeight:'500'}}>0%</Text>
-          </View>
-        </View>
-        <View style={styles.sensorContainer}>
-        <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: 'black', left: 5, top: 5, fontSize: 15 }}>Pressure</Text>
-            <Image source={require('../../images/tower-icon.png')} style={{ height: 30, width: 30, top: 5, left: 80 }} />
-          </View>
-          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-          <Image source={require('../../images/pressure.png')} style={{ height: 50, width: 50, top:20, }} />
-          <Image source={require('../../images/graph.png')} style={{ height: 35, width: 35, top: 30, }} />
-          <Image source={require('../../images/battery_100.png')} style={{ height: 35, width: 35, top: 30,  }} />
-          </View>
-          <View style={{flexDirection:'row',top:10,justifyContent:'space-around',left:8,}}>
-            <Text style={{color:'black', fontWeight:'500',top:12}}>0 Psi</Text>
-            <Text style={{color:'black', fontWeight:'500',top:12}}>View</Text>
-            <Text style={{color:'black', fontWeight:'500',top:12}}>90%</Text>
-          </View>
-        </View>
-      </View>
-      </View>
-    )
-  }
-
-
-
-
-
-
+  // CURENT DATE AND TIME
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
@@ -133,6 +76,11 @@ export default function IrrigationScreen() {
       minute: '2-digit',
     });
   };
+
+
+
+
+  
 
   return (
 
@@ -205,18 +153,18 @@ export default function IrrigationScreen() {
         <View>
           {isExpanded1 && (
             <View>
-              <View style={styles.tabContainer}>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('valve')}>
-                  <Text style={styles.tabText}>Valve</Text>
+              <View style={IrrigationPageStyle.tabContainer}>
+                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('valve')}>
+                  <Text style={IrrigationPageStyle.tabText}>Valve</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('sensor')}>
-                  <Text style={styles.tabText}>Sensor</Text>
+                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('sensor')}>
+                  <Text style={IrrigationPageStyle.tabText}>Sensor</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('group')}>
-                  <Text style={styles.tabText}>Group</Text>
+                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('group')}>
+                  <Text style={IrrigationPageStyle.tabText}>Group</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('filter')}>
-                  <Text style={styles.tabText}>Filter</Text>
+                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('filter')}>
+                  <Text style={IrrigationPageStyle.tabText}>Filter</Text>
                 </TouchableOpacity>
               </View>
               <View>
@@ -227,7 +175,7 @@ export default function IrrigationScreen() {
             </View>
           )}
         </View>
-        <View>
+        {/* <View>
               {isExpanded2&&(
                   <View>
                   <View style={styles.tabContainer}>
@@ -247,9 +195,7 @@ export default function IrrigationScreen() {
                  
                 )
               }
-              </View>
-
-
+              </View> */}
 
 
 
@@ -401,14 +347,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500'
   },
-  sensorContainer: {
-    backgroundColor: "white",
-    height: 130,
-    width: "45%",
-    borderRadius: 10,
-    elevation: 5
-  }
-
-
 
 })

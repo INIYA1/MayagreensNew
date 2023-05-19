@@ -28,7 +28,7 @@ function Navigation() {
                 <Stack.Screen name='login' component={LoginScreen} />
                 <Stack.Screen name='otp' component={OtpVerification} />
                 <Stack.Screen name='dashboard' component={DrawerNavigator} />
-            <Stack.Screen name='Irrigation' component={IrrigationScreen} style={{ color: 'blue' }} />
+                <Stack.Screen name='Irrigation' component={IrrigationScreen} style={{ color: 'blue' }} />
 
             </Stack.Navigator>
         </NavigationContainer>

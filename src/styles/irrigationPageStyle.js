@@ -1,4 +1,4 @@
-export const IrrigationPageStyle={
+export const IrrigationPageStyle = {
     LinearGradient: {
         height: "100%",
         width: "100%",
@@ -41,7 +41,7 @@ export const IrrigationPageStyle={
     separateline: {
         borderBottomColor: 'gray',
         borderBottomWidth: 1,
-        marginVertical: 10, 
+        marginVertical: 10,
     },
     tabContainer: {
         margin: 8,
@@ -51,7 +51,8 @@ export const IrrigationPageStyle={
         justifyContent: 'space-around',
         alignSelf: 'center',
         elevation: 5,
-        
+        width:'96%'
+
     },
     tabText: {
         margin: 10,
@@ -82,23 +83,70 @@ export const IrrigationPageStyle={
         borderRadius: 10,
         elevation: 5
     },
-    towerImg:{
-        height: 30, 
-        width: 30, 
-        bottom: 25, 
+    towerImg: {
+        height: 30,
+        width: 30,
+        bottom: 25,
         left: 10
     },
-    toggleBtn:{
-        height: 50, 
-        width: 50, 
-        left: 9, 
+    toggleBtn: {
+        height: 50,
+        width: 50,
+        left: 9,
         bottom: 40
     },
-    thunderImg:{
-        height: 35, 
-        width: 35, 
-        bottom: 25, 
+    thunderImg: {
+        height: 35,
+        width: 35,
+        bottom: 25,
         left: 80
+    },
+    cardText: {
+        color: 'black',
+        fontWeight: '500'
+    },
+    boxHead: {
+        color: 'black',
+        left: 5,
+        top: 5,
+        fontSize: 15
+    },
+    alignment: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    tabText:{
+        fontSize: 18,
+        color: 'black',
+        fontWeight: 600
+    },
+    manualCard:{
+        margin:8,
+        backgroundColor:'white',
+        height:150,
+        width:'96%',
+        alignSelf:'center',
+        borderRadius:10,
+        elevation:5
+    },
+    groupText1:{
+        alignSelf:'center',
+        color:'black',
+        fontSize:20,
+        fontWeight:'600'
+    },
+    groupText2:{
+        color:'black',
+        fontSize:18,
+        fontWeight:'500',
+        top:35,
+        margin:10,
+    },
+    groupText3:{
+        color:'black',
+        top:45,
+        fontWeight:'500',
+        margin:10
     }
 
 }

@@ -5,7 +5,7 @@ import { IrrigationPageStyle } from '../../styles/irrigationPageStyle';
 
 
 
-const toggleButton = () => {
+export function toggleButton  () {
     return (
         <TouchableOpacity>
             <Image source={require('../../images/toggle-off.png')} style={IrrigationPageStyle.toggleBtn} />
