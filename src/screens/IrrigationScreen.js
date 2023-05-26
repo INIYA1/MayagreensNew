@@ -77,9 +77,6 @@ export default function IrrigationScreen() {
     });
   };
 
-
-
-
   
 
   return (
@@ -175,29 +172,6 @@ export default function IrrigationScreen() {
             </View>
           )}
         </View>
-        {/* <View>
-              {isExpanded2&&(
-                  <View>
-                  <View style={styles.tabContainer}>
-                  <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('MANUAL')}>
-                  <Text style={styles.tabText}>MANUAL</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('CYCLE')}>
-                  <Text style={styles.tabText}>CYCLE</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('SENSOR')}>
-                  <Text style={styles.tabText}>SENSOR</Text>
-                </TouchableOpacity>
-                </View>
-                {groupTabContent()}
-                
-                  </View>
-                 
-                )
-              }
-              </View> */}
-
-
 
 
         <View style={styles.card2}>

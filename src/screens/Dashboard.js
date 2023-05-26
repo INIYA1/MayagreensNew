@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import DashboardData from '../../components/DashboardData';
+import DashboardData from '../components/DashboardData';
 
 
 
@@ -16,7 +16,7 @@ export default function Dashboard({navigation}) {
                 style={styles.LinearGradient}>
                 <ScrollView>
                     <View style={styles.card1}>
-                        <Image source={require('../../images/farmer.jpg')} style={styles.farmerImg} />
+                        <Image source={require('../images/farmer.jpg')} style={styles.farmerImg} />
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={styles.tex1}>Test - 1</Text>
                             <Text style={styles.number}> 9150688467 </Text>
@@ -28,7 +28,7 @@ export default function Dashboard({navigation}) {
                     <View style={styles.card2}>
                         <Text style={styles.text2}> Test Farm </Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', right: 20 }}>
-                            <Image source={require('../../images/weather-icon.png')} style={styles.weatherImg} />
+                            <Image source={require('../images/weather-icon.png')} style={styles.weatherImg} />
                             <Text style={styles.text3}> 28 C</Text>
                         </View>
                     </View>

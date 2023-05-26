@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { IrrigationPageStyle } from '../../../styles/irrigationPageStyle';
 import GroupManual from './GroupManual';
+import GroupCycle from './GroupCycle';
 
 
 const MotoroneGroup = () => {
@@ -17,14 +18,13 @@ const MotoroneGroup = () => {
             case 'manual':
                 return <GroupManual />
             case 'cycle':
-                return <Text>cycle</Text>;
+                return <GroupCycle />
             case 'sensor':
                 return <Text>sensor</Text>;
             default:
                 return null;
         }
     };
-
 
     return (
         <View>

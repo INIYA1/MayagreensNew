@@ -51,7 +51,7 @@ export const IrrigationPageStyle = {
         justifyContent: 'space-around',
         alignSelf: 'center',
         elevation: 5,
-        width:'96%'
+        width: '96%'
 
     },
     tabText: {
@@ -115,38 +115,111 @@ export const IrrigationPageStyle = {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
-    tabText:{
+    tabText: {
         fontSize: 18,
         color: 'black',
         fontWeight: 600
     },
-    manualCard:{
-        margin:8,
-        backgroundColor:'white',
-        height:150,
-        width:'96%',
-        alignSelf:'center',
-        borderRadius:10,
-        elevation:5
+    manualCard: {
+        margin: 8,
+        backgroundColor: 'white',
+        height: 200,
+        width: '96%',
+        alignSelf: 'center',
+        borderRadius: 10,
+        elevation: 5
     },
-    groupText1:{
-        alignSelf:'center',
-        color:'black',
+    groupText1: {
+        alignSelf: 'center',
+        color: 'black',
+        fontSize: 20,
+        fontWeight: '600',
+        bottom: 40,
+
+    },
+    groupText2: {
+        color: 'black',
+        fontSize: 18,
+        left: 20,
+        fontWeight: '500',
+        // top:35,
+        // margin:10,
+        bottom: 20
+    },
+    groupText3: {
+        color: 'black',
+        left: 20,
+        fontWeight: '500',
+        // margin:10
+    },
+    toggleBtn1: {
+        top: 40,
+        left: 340
+    },
+    gManualbtn: {
+        backgroundColor: 'green',
+        height: 35,
+        width: 80,
+        borderRadius: 5
+    },
+    gManualbtnText: {
+        color: 'white',
+        alignSelf: 'center',
+        top: 7,
+        fontWeight: 'bold'
+    },
+    cycleCard: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        height: 200,
+        width: '96%',
+        borderRadius: 10,
+        // justifyContent:'center',
+        alignSelf: 'center'
+    },
+    gCycleHeading: {
+        textDecorationLine: 'underline',
+        color: 'black',
+        alignSelf: 'center',
+        top: 15,
         fontSize:20,
-        fontWeight:'600'
+        fontWeight:'800'
     },
-    groupText2:{
+    gCycleText1:{
         color:'black',
-        fontSize:18,
-        fontWeight:'500',
-        top:35,
-        margin:10,
+        fontSize:15,
+        fontWeight:'bold',
     },
-    groupText3:{
-        color:'black',
-        top:45,
-        fontWeight:'500',
-        margin:10
-    }
+    expandedCard:{
+        backgroundColor:'white',
+        top:50,
+        height:80
+    },
+    tabBTNGreen : {
+        height : 50,
+        backgroundColor : '#093301',
+        borderRadius : 5,
+      },
+      tabBTNGreenText : {
+        color : 'white',
+        fontWeight : 800,
+        textAlign : 'center',
+        top : 10,
+        fontSize : 18
+      },
+      tabContainer: {
+        marginTop: 8,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginVertical: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      },
+    
+    
+    
+
 
 }
