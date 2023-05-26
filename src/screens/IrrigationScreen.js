@@ -7,6 +7,7 @@ import MotoroneValve from '../components/IrrigationPageList/MotoroneValve';
 import MotoroneSensor from '../components/IrrigationPageList/MotoroneSensor';
 import MotoroneGroup from '../components/IrrigationPageList/MotoroneGroupComponent/MotoroneGroup';
 import { IrrigationPageStyle } from '../styles/irrigationPageStyle';
+import { images } from '../images/images';
 // import IrrigationValveList from '../../components/irrigationvalvelist'
 
 
@@ -89,11 +90,11 @@ export default function IrrigationScreen() {
 
         <View style={{ flexDirection: 'row', top: 20 }}>
           <Text style={{ color: "black", left: 15, fontWeight: "700", fontSize: 20 }}>Test Farm</Text>
-          <Image source={require('../../images/location-icon.png')} style={{ left: 270 }} />
+          <Image source={require('../images/location-icon.png')} style={{ left: 270 }} />
         </View>
 
         <View style={{ flexDirection: 'row', top: 30, left: 180 }}>
-          <Image source={require('../../images/connected-icon.png')} style={{ height: 40, width: 40 }} />
+          <Image source={require('../images/connected-icon.png')} style={{ height: 40, width: 40 }} />
           <Text style={{ left: 30, top: 10, color: 'black', fontSize: 15 }}>{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
         </View>
       </View>
@@ -105,14 +106,14 @@ export default function IrrigationScreen() {
               <Icon name='setting' size={35} />
             </TouchableOpacity>
             <Text style={styles.text1}>POWER</Text>
-            <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
+            <Image source={require('../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
             <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
           </View>
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity>
-              <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
+              <Image source={require('../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
 
             </TouchableOpacity>
             <View style={{ alignItems: 'center', left: 60 }}>
@@ -123,7 +124,7 @@ export default function IrrigationScreen() {
             </View>
             <View>
               <TouchableOpacity>
-                <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
+                <Image source={require('../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
               </TouchableOpacity>
             </View>
           </View>
@@ -134,11 +135,11 @@ export default function IrrigationScreen() {
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: "row" }}>
-            <Image source={require('../../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
+            <Image source={require('../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
 
             <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
             <TouchableOpacity>
-              <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
+              <Image source={require('../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
             </TouchableOpacity>
             <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
           </View>
@@ -180,14 +181,14 @@ export default function IrrigationScreen() {
               <Icon name='setting' size={35} />
             </TouchableOpacity>
             <Text style={styles.text1}>POWER</Text>
-            <Image source={require('../../images/batter-icon.png')} style={{ height: 40, width: 40, left: 65 }} />
+            <Image source={images.ba} style={{ height: 40, width: 40, left: 65 }} />
             <Text style={styles.text2}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
           </View>
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity>
-              <Image source={require('../../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
+              <Image source={require('../images/motor-icon-new.jpg')} style={{ height: 80, width: 80, left: 7, top: 8 }} />
 
             </TouchableOpacity>
             <View style={{ alignItems: 'center', left: 60 }}>
@@ -198,7 +199,7 @@ export default function IrrigationScreen() {
             </View>
             <View>
               <TouchableOpacity>
-                <Image source={require('../../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
+                <Image source={require('../images/on-off.png')} style={{ height: 60, width: 60, left: 90, top: 8 }} />
               </TouchableOpacity>
             </View>
           </View>
@@ -209,10 +210,10 @@ export default function IrrigationScreen() {
           <View style={styles.separateline} />
 
           <View style={{ flexDirection: "row" }}>
-            <Image source={require('../../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
+            <Image source={require('../images/valve_on.png')} style={{ height: 50, width: 50, left: 7, }} />
             <Text style={{ top: 5, color: 'black', fontWeight: 'bold', fontSize: 16 }}>+   0</Text>
             <TouchableOpacity>
-              <Image source={require('../../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
+              <Image source={require('../images/calender-icon.png')} style={{ height: 45, width: 45, left: 90, top: 8 }} />
             </TouchableOpacity>
             <Text style={{ left: 120, fontSize: 18, fontWeight: 'bold', color: 'black', top: 15 }}>MODE - MANUAL</Text>
           </View>

@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image,TextInput, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import loginPageStyle from '../styles/loginPageStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -44,7 +44,7 @@ export default function LoginScreen({ navigation }) {
         <Image source={require('../images/logo.png')} style={loginPageStyle.image} />
         <View style={{ top: 100 }}>
           <Text style={loginPageStyle.text1}> Phone Number :</Text>
-          <View style={{ flexDirection: 'row', left: 40, top: 40 }}>
+          <View style={loginPageStyle.icon}>
             <Icon name='person' size={25} />
             <TextInput
               style={loginPageStyle.textInput}

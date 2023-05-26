@@ -8,6 +8,7 @@ import {
   TouchableOpacity, Alert
 } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
+import otpVerifyPageStyle from "../styles/otpVerifyPageStyle";
 
 export default function OtpVerficationScreen({ navigation }) {
 
@@ -87,8 +88,7 @@ export default function OtpVerficationScreen({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: "white", height: "100%", width: "100%" }}>
+    <View style={otpVerifyPageStyle.container}>
         <View>
         <Image
             style={{ height: 300, width: "100%", top: 30 }}
@@ -235,7 +235,7 @@ export default function OtpVerficationScreen({ navigation }) {
         </View>
         {/* <ButtonGrey1 value="Verify" />
         <ButtonGrey1 value="Resend OTP" /> */}
-      </View>
+      
     </View>
   )
 }

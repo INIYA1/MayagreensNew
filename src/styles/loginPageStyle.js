@@ -41,7 +41,9 @@ export default StyleSheet.create({
         fontWeight: '800',
         fontSize: 20
     },
-    LinearGradient:{
-
+    icon: {
+        flexDirection: 'row',
+        left: 40,
+        top: 40
     }
 })
