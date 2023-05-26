@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ArrowIcon from 'react-native-vector-icons/FontAwesome5';
-import MotoroneValve from '../../components/IrrigationPageList/MotoroneValve';
-import MotoroneSensor from '../../components/IrrigationPageList/MotoroneSensor';
-import MotoroneGroup from '../../components/IrrigationPageList/MotoroneGroupComponent/MotoroneGroup';
-import { IrrigationPageStyle } from '../../styles/irrigationPageStyle';
+import MotoroneValve from '../components/IrrigationPageList/MotoroneValve';
+import MotoroneSensor from '../components/IrrigationPageList/MotoroneSensor';
+import MotoroneGroup from '../components/IrrigationPageList/MotoroneGroupComponent/MotoroneGroup';
+import { IrrigationPageStyle } from '../styles/irrigationPageStyle';
 // import IrrigationValveList from '../../components/irrigationvalvelist'
 
 

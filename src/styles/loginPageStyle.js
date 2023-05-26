@@ -1,4 +1,4 @@
-import { StyleSheet, } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     image: {
@@ -40,5 +40,8 @@ export default StyleSheet.create({
         alignSelf: 'center',
         fontWeight: '800',
         fontSize: 20
+    },
+    LinearGradient:{
+
     }
 })
